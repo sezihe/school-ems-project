@@ -11,6 +11,10 @@ const timetableSchema = mongoose.Schema({
         trim: true,
         required: true,
     },
+    courseUnitLoad: {
+        type: Number,
+        required: true,
+    },
     dates: {
         type: Array,
         required: true,

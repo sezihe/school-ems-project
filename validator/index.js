@@ -10,6 +10,10 @@ exports.courseValidator = async (req, res, next) => {
             .max(8, "INVALID_COU_CDE_MAX")
             .required("INVALID_COU_CDE_REQ"),
 
+        // courseUnitLoad validation.
+        courseUnitLoad: yup.number()
+            .required("INVALID_COU_UNIT_LOAD_REQ"),
+
         // courseTitle validation.
         courseTitle: yup.string().trim()
             .matches(/[\w\-]/i, "INVALID_COU_TIT_CHARS")
@@ -22,16 +26,17 @@ exports.courseValidator = async (req, res, next) => {
             .required("INVALID_DATES_REQ"),
 
         // durationHours validation. 
-        durationHours: yup.string().trim()
+        durationHours: yup.number()
             .required("INVALID_DUR_HOURS_REQ"),
     });
 
     // check for errors and return the errors.
-    const { courseCode, courseTitle, dates, durationHours } = req.body;
+    const { courseCode, courseUnitLoad, courseTitle, dates, durationHours } = req.body;
     try {
         // use schema to validate request
         await yupSchema.validate({
             courseCode,
+            courseUnitLoad,
             courseTitle,
             dates,
             durationHours,

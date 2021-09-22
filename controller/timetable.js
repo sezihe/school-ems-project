@@ -26,15 +26,17 @@ exports.newCourse = async (req, res) => {
     const timeTableEntry = new timetableModel(req.body);
 
     timeTableEntry.save().then(result => {
-        const { _id, courseCode, courseTitle, dates, createdAt } = timeTableEntry;
+        const { _id, courseCode, courseUnitLoad, courseTitle, dates, durationHours, createdAt } = timeTableEntry;
         return res.status(200).json({
             messageId: "INS_SUC",
-            message: "Course Inserted In Timetable Successfully",
+            message: "Course inserted into the timetable successfully",
             courseDetails: {
                 _id,
                 courseCode,
+                courseUnitLoad,
                 courseTitle,
                 dates,
+                durationHours,
                 createdAt,
             }
         });
