@@ -1,0 +1,79 @@
+swagger: "2.0"
+info:
+  title: School E.M.S Project
+  description: A School Email Notification System Project
+  version: 0.0.1
+  contact:
+    email: sezihe@gmail.com
+  license:
+    name: MIT
+    url: https://mit-license.org/
+servers:
+  - url: http://localhost:3007
+    description: Local Development Server
+tags:
+  - name: 'timetable'
+    description: "Operations on Timetable"
+paths:
+  /timetable:
+    get:
+      tags:
+        - timetable
+      summary: Gets all courses in the timetable
+      description: Searches the DB and returns an Array of JSON Objects containing all courses in the DB.
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Get successful
+        '400':
+          description: Internal Server Error. Please check connection
+  /timetable/new:
+    post:
+      tags:
+        - timetable
+      summary: Adds a new course to the Timetable
+      description: Adds a new course to the Timetable dB. Returns a JSON object with a message
+      produces:
+        - application/json
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Course object that needs to be added"
+          required: true
+          schema:
+            $ref: '#/definitions/addCourse'
+      responses:
+        '200':
+          description: Course added successful
+        '401':
+          description: Wrong details
+        '400':
+          description: Bad request
+
+
+definitions:
+  addCourse:
+    type: object
+    required:
+      - courseCode
+      - courseUnitLoad
+      - courseTitle
+      - dates
+      - durationHours
+    properties:
+      courseCode:
+        type: string
+        example: COS341
+      courseUnitLoad:
+        type: number
+        example: 2
+      courseTitle:
+        type: string
+        example: Computer Archetecture I
+      dates:
+        type: array
+        example: ["TuesdayT10:00"]
+      durationHours:
+        type: number
+        example: 2
