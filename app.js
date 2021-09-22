@@ -21,6 +21,7 @@ mongoose.connection.on("error", err => console.log(`DB connection error: ${err.m
 const app = express();
 
 // bringing in the routes
+const timetableRoutes = require('./routes/timetable');
 
 // using middlewares
 app.use(morgan('tiny'));
@@ -28,6 +29,7 @@ app.use(helmet());
 app.use(bodyParser.json());
 
 // using routes
+app.use('/timetable', timetableRoutes);
 
 // starting server
 const PORT = process.env.PORT || 3007;
