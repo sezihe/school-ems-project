@@ -4,7 +4,7 @@
   "description": "School Project Backend",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
     "dev": "nodemon app.js"
   },
   "author": "Daniel S. Ezihe",
@@ -22,5 +22,8 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.12"
+  },
+  "engines": {
+    "node": "16.5.0"
   }
 }
