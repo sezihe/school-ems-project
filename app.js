@@ -4,6 +4,7 @@ const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const swaggerUi = require('swagger-ui-express');
 const yaml = require('yamljs');
+const path = require('path');
 
 const mongoose = require('mongoose');
 
@@ -37,6 +38,9 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // using routes
 app.use('/timetable', timetableRoutes);
+
+// landing page
+app.use(express.static('public'));
 
 // starting server
 const PORT = process.env.PORT || 3007;
